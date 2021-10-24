@@ -27,17 +27,40 @@
  - http://localhost:9090/sample/hello/20 网关异步调用
 
  flux工程 
- - http://localhost:8090/reactor/20  webflux异步调用
- - http://localhost:8090/sample/hello/20  webflux网关异步调用
+ - http://localhost:8090/reactor/20  webflux异步调用 
 > note: url后面的20表示阻塞多长毫秒，模拟网关转发到后段服务的运行时间
 
 分别运行microserice-user,flux,mvc 中的Application 启动3个项目,使用jemter运行jmeter工程里的`Flux-VS-MVC.jmx`
 压测4个api在不同阻塞时间的performance  
   
-模拟后端服务延迟50ms，4000thread访问5次，总计2w次。 使用webflux和mvc压测结果如下
- ![env](static/webflux_vs_mvc_50ms.png)
-  
-> 由于本地电脑测试，每个开4000线程，共8000线程，所以数据不重要，重要的看对比,明显看出webflux要好  
+模拟后端服务延迟50ms，2000thread访问5次，总计1w次。 使用webflux和mvc压测结果如下
+
+- Springmvc block vs  springwebflux
+
+10ms 延迟
+ ![env](static/blockvswebflux_10.png)
+
+20ms 延迟
+ ![env](static/blockvswebflux_20.png)
+
+200ms 延迟
+ ![env](static/blockvswebflux_200.png)
+
+>  spring webflux 完胜  
+
+- Springmvc non block vs  springwebflux
+
+10ms 延迟
+ ![env](static/asyncvswebflux_10.png)
+>  spring webflux 完胜  
+
+- gw vs springwebflux
+
+200ms 延迟
+ ![env](static/gwvswebflux_200.png)
+>  spring webflux 完胜  
+
+结论：使用spring webflux
 
 
 ## gw-flux 网关工程功能
