@@ -1,0 +1,21 @@
+# eclipse ignore
+.settings
+.project
+.classpath
+.tomcatplugin
+logPath_IS_UNDEFINED
+*.gz
+disconf
+
+# idea ignore
+.idea
+*.iml
+
+# maven ignore
+target
+
+# other ignore
+*.log
+*.tmp
+Thumbs.db
+*.DS_Store
